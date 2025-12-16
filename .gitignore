@@ -1,0 +1,45 @@
+# Dependencies
+/vendor/
+composer.lock
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+
+# Testing
+/coverage/
+.phpunit.result.cache
+.phpunit.cache
+
+# Build
+/build/
+
+# Environment
+.env
+.env.backup
+.env.local
+
+# Logs
+*.log
+
+# Docker
+docker/test-app/vendor/
+docker/test-app/composer.lock
+docker/test-app/storage/logs/*.log
+docker/test-app/.env
+docker/test-app/bootstrap/cache/*
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+
+# PHPStan
+.phpstan.cache

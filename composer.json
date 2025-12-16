@@ -1,0 +1,77 @@
+{
+    "name": "central-logs/laravel",
+    "description": "Laravel package for sending logs to Central Logs system with sync, async, and batch processing modes. Achieve 251x faster logging performance.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "logging",
+        "central-logs",
+        "monolog",
+        "log-aggregation",
+        "batch-logging",
+        "async-logging",
+        "queue",
+        "observability"
+    ],
+    "homepage": "https://github.com/central-logs/laravel",
+    "authors": [
+        {
+            "name": "Pande",
+            "email": "pande@example.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/central-logs/laravel/issues",
+        "source": "https://github.com/central-logs/laravel"
+    },
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/contracts": "^11.0|^12.0",
+        "illuminate/queue": "^11.0|^12.0",
+        "illuminate/console": "^11.0|^12.0",
+        "monolog/monolog": "^3.0",
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0",
+        "phpunit/phpunit": "^11.0",
+        "mockery/mockery": "^1.6",
+        "phpstan/phpstan": "^1.10",
+        "laravel/pint": "^1.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "CentralLogs\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CentralLogs\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CentralLogs\\CentralLogsServiceProvider"
+            ],
+            "aliases": {
+                "CentralLogs": "CentralLogs\\Facades\\CentralLogs"
+            }
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "phpstan": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}

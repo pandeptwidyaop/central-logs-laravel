@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: central-logs-laravel-php
+    volumes:
+      - ./:/var/www/html
+      - ./docker/test-app:/var/www/test-app
+    working_dir: /var/www/html
+    environment:
+      - PHP_IDE_CONFIG=serverName=central-logs-laravel
+    networks:
+      - central-logs-net
+    depends_on:
+      - redis
+
+  nginx:
+    image: nginx:alpine
+    container_name: central-logs-laravel-nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - ./docker/test-app:/var/www/test-app
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - central-logs-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: central-logs-laravel-redis
+    ports:
+      - "6380:6379"
+    networks:
+      - central-logs-net
+
+  queue-worker:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: central-logs-laravel-queue
+    volumes:
+      - ./:/var/www/html
+      - ./docker/test-app:/var/www/test-app
+    working_dir: /var/www/test-app
+    command: php artisan queue:work --queue=central-logs --tries=3 --backoff=5,15,30
+    depends_on:
+      - php
+      - redis
+    networks:
+      - central-logs-net
+    restart: unless-stopped
+
+networks:
+  central-logs-net:
+    driver: bridge
