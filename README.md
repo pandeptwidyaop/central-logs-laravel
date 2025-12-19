@@ -24,8 +24,8 @@ A powerful and flexible Laravel package for sending logs to Central Logs system 
 
 ## Requirements
 
-- PHP 8.2 or higher
-- Laravel 11.x or 12.x
+- PHP 8.0 or higher
+- Laravel 9.x, 10.x, 11.x, or 12.x
 - Guzzle HTTP Client 7.8+
 - Central Logs instance (running at accessible URL)
 
