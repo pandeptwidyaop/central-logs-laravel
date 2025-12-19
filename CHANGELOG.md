@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.1.0...v1.2.0) (2025-12-19)
+
+
+### Features
+
+* add support for Laravel 9 and 10, expand PHP version range ([08d461f](https://github.com/pandeptwidyaop/central-logs-laravel/commit/08d461f05b1157a201afab28c9f9098b5d827208))
+
 # [1.1.0](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.0.0...v1.1.0) (2025-12-19)
 
 
