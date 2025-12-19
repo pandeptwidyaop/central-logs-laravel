@@ -161,7 +161,7 @@ class LogTransformer
                     return [
                         'file' => $trace['file'] ?? 'unknown',
                         'line' => $trace['line'] ?? 0,
-                        'function' => $trace['function'] ?? 'unknown',
+                        'function' => $trace['function'] ?? 'unknown', // @phpstan-ignore-line
                         'class' => $trace['class'] ?? null,
                     ];
                 })

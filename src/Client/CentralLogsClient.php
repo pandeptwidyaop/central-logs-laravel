@@ -7,6 +7,7 @@ use CentralLogs\Exceptions\ApiException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Psr\Http\Message\RequestInterface;
@@ -192,7 +193,7 @@ class CentralLogsClient implements LogClientInterface
             int $retries,
             RequestInterface $request,
             ?ResponseInterface $response = null,
-            ?RequestException $exception = null
+            ?GuzzleException $exception = null
         ) {
             $maxRetries = $this->config['retry']['times'] ?? 3;
 
