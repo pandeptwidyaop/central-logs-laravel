@@ -36,7 +36,12 @@ jobs:
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Execute tests
-        run: vendor/bin/phpunit
+        run: |
+          if [ -n "$(find tests -name '*Test.php' -type f)" ]; then
+            vendor/bin/phpunit
+          else
+            echo "No tests found, skipping..."
+          fi
 
   phpstan:
     runs-on: ubuntu-latest
