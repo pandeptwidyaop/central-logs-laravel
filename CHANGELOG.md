@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.2.0...v1.2.1) (2025-12-19)
+
+
+### Bug Fixes
+
+* remove Laravel 9 and PHP 8.0, adjust version requirements ([33c3aa7](https://github.com/pandeptwidyaop/central-logs-laravel/commit/33c3aa7b09325c8e9eb9db8a26d93755ed73fd18))
+
 # [1.2.0](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.1.0...v1.2.0) (2025-12-19)
 
 
