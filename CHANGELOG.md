@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.2.1...v1.2.2) (2025-12-19)
+
+
+### Bug Fixes
+
+* handle missing configuration gracefully on install ([fc61312](https://github.com/pandeptwidyaop/central-logs-laravel/commit/fc613122ba9778a56e26fce1c912af6cdb6c7b93))
+
 ## [1.2.1](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.2.0...v1.2.1) (2025-12-19)
 
 
