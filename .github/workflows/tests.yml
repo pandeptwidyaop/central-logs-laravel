@@ -17,7 +17,7 @@ jobs:
         laravel: [11.*, 12.*]
         dependency-version: [prefer-lowest, prefer-stable]
         
-    name: PHP ${{'{{'}} matrix.php {{'}}'}} - Laravel ${{'{{'}} matrix.laravel {{'}}'}} - ${{'{{'}} matrix.dependency-version {{'}}'}}
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
     
     steps:
       - name: Checkout code
@@ -26,14 +26,14 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{'{{'}} matrix.php {{'}}'}}
+          php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath
           coverage: none
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{'{{'}} matrix.laravel {{'}}'}}" --no-interaction --no-update
-          composer update --${{'{{'}} matrix.dependency-version {{'}}'}} --prefer-dist --no-interaction
+          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Execute tests
         run: vendor/bin/phpunit
@@ -57,4 +57,4 @@ jobs:
         run: composer install --prefer-dist --no-interaction
 
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyse
+        run: vendor/bin/phpstan analyse --memory-limit=256M
