@@ -28,9 +28,25 @@ class CentralLogsServiceProvider extends ServiceProvider
 
         // Register the log client
         $this->app->singleton(LogClientInterface::class, function ($app) {
+            $apiUrl = config('central-logs.api_url');
+            $apiKey = config('central-logs.api_key');
+
+            // Return null client if configuration is missing
+            if (empty($apiUrl) || empty($apiKey)) {
+                // Log warning only once during boot
+                if (config('central-logs.debug', false)) {
+                    error_log('[CentralLogs] API URL or API Key not configured. Please publish and configure central-logs.php');
+                }
+
+                return new class implements LogClientInterface {
+                    public function send(array $log): void {}
+                    public function sendBatch(array $logs): void {}
+                };
+            }
+
             return new CentralLogsClient(
-                config('central-logs.api_url'),
-                config('central-logs.api_key'),
+                $apiUrl,
+                $apiKey,
                 config('central-logs.http', []),
                 config('central-logs.debug', false)
             );

@@ -57,6 +57,8 @@ php artisan vendor:publish --tag=central-logs-config
 
 This will create a `config/central-logs.php` file in your Laravel application.
 
+**Important:** The package will work in "null mode" (no logs sent) until you configure the API credentials in Step 3.
+
 ### Step 3: Configure Environment
 
 Add the following to your `.env` file:
