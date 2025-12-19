@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.0.0...v1.1.0) (2025-12-19)
+
+
+### Features
+
+* add support for Laravel 12 and PHP 8.3 testing ([4ea06d4](https://github.com/pandeptwidyaop/central-logs-laravel/commit/4ea06d47bbfeaf376c9698306fdd47868b84b5d3))
+
 # 1.0.0 (2025-12-19)
 
 
