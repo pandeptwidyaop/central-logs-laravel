@@ -431,7 +431,7 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for det
 
 ## Security
 
-If you discover any security-related issues, please email security@example.com instead of using the issue tracker.
+If you discover any security-related issues, please email dev@pande.id instead of using the issue tracker.
 
 ## License
 
@@ -444,6 +444,6 @@ The MIT License (MIT). Please see [LICENSE](LICENSE) for more information.
 
 ## Support
 
-- [Documentation](https://github.com/yourusername/central-logs-laravel)
-- [Issue Tracker](https://github.com/yourusername/central-logs-laravel/issues)
-- [Central Logs Main Project](https://github.com/yourusername/central-logs)
+- [Documentation](https://github.com/pandeptwidyaop/central-logs-laravel)
+- [Issue Tracker](https://github.com/pandeptwidyaop/central-logs-laravel/issues)
+- [Email](mailto:dev@pande.id)

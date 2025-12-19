@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Extract changelog for version
+        id: changelog
+        run: |
+          VERSION=${{'{{'}} steps.get_version.outputs.VERSION {{'}}'}}
+          CHANGELOG=$(sed -n "/## \[$VERSION\]/,/## \[/p" CHANGELOG.md | sed '$d' | tail -n +2)
+          echo "CHANGELOG<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: v${{'{{'}} steps.get_version.outputs.VERSION {{'}}'}}
+          body: ${{'{{'}} steps.changelog.outputs.CHANGELOG {{'}}'}}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{'{{'}} secrets.GITHUB_TOKEN {{'}}'}}
+
+      - name: Trigger Packagist update
+        run: |
+          curl -X POST https://packagist.org/api/update-package?username=${{'{{'}} secrets.PACKAGIST_USERNAME {{'}}'}}&apiToken=${{'{{'}} secrets.PACKAGIST_TOKEN {{'}}'}} \
+            -d '{"repository":{"url":"https://github.com/pandeptwidyaop/central-logs-laravel"}}'
+        continue-on-error: true

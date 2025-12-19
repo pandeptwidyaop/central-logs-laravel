@@ -14,17 +14,17 @@
         "queue",
         "observability"
     ],
-    "homepage": "https://github.com/central-logs/laravel",
+    "homepage": "https://github.com/pandeptwidyaop/central-logs-laravel",
     "authors": [
         {
             "name": "Pande",
-            "email": "pande@example.com",
+            "email": "dev@pande.id",
             "role": "Developer"
         }
     ],
     "support": {
-        "issues": "https://github.com/central-logs/laravel/issues",
-        "source": "https://github.com/central-logs/laravel"
+        "issues": "https://github.com/pandeptwidyaop/central-logs-laravel/issues",
+        "source": "https://github.com/pandeptwidyaop/central-logs-laravel"
     },
     "require": {
         "php": "^8.2",

@@ -54,5 +54,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Queue worker setup instructions
 - Supervisor configuration examples
 
-[Unreleased]: https://github.com/central-logs/laravel/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/central-logs/laravel/releases/tag/v1.0.0
+[Unreleased]: https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/pandeptwidyaop/central-logs-laravel/releases/tag/v1.0.0
