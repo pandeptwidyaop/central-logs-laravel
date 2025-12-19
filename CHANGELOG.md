@@ -1,3 +1,21 @@
+# 1.0.0 (2025-12-19)
+
+
+### Bug Fixes
+
+* configure PHPStan static analysis with proper paths and memory limit ([48f0a25](https://github.com/pandeptwidyaop/central-logs-laravel/commit/48f0a25b4f95cf0c798c2591e75f5f085ac35af8))
+* correct GitHub Actions matrix variable syntax in tests workflow ([b37a891](https://github.com/pandeptwidyaop/central-logs-laravel/commit/b37a891a393d74fe874b9e6fd6f565f4d49cacd6))
+* correct semantic-release workflow authentication and variable syntax ([b83c3f5](https://github.com/pandeptwidyaop/central-logs-laravel/commit/b83c3f57a8f5be6f0896d14d2c186e785572d8bb))
+* exclude Laravel 12 from CI tests until testbench support ([9610138](https://github.com/pandeptwidyaop/central-logs-laravel/commit/96101383ecce462b10bcc8c451d9bad81f4c81ef))
+* handle empty test suite gracefully in CI workflow ([e0b263a](https://github.com/pandeptwidyaop/central-logs-laravel/commit/e0b263ae79ff23980bc44d16825418c5150268be))
+* use default GITHUB_TOKEN instead of custom GH_TOKEN secret ([9231761](https://github.com/pandeptwidyaop/central-logs-laravel/commit/9231761e9184a0272650a99c2d8e9b1ae6b548c3))
+
+
+### Features
+
+* add semantic versioning and auto-release to Packagist ([d393aca](https://github.com/pandeptwidyaop/central-logs-laravel/commit/d393aca23e74480b87a064da0751cfd8aa39dc65))
+* Initial release v1.0.0 ([8553a1f](https://github.com/pandeptwidyaop/central-logs-laravel/commit/8553a1f9b2e993175b36878bcf13e6e4c9b20c2a))
+
 # Changelog
 
 All notable changes to `central-logs/laravel` will be documented in this file.
