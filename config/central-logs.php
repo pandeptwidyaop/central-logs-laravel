@@ -43,9 +43,11 @@ return [
         'enabled' => env('CENTRAL_LOGS_BATCH_ENABLED', true),
 
         // Maximum number of logs per batch (API limit: 100)
+        // Tip: Use lower values (10-20) in development for faster feedback
         'size' => env('CENTRAL_LOGS_BATCH_SIZE', 50),
 
         // Maximum time in seconds before flushing batch
+        // Tip: Use 1-2 seconds in development for faster feedback
         'timeout' => env('CENTRAL_LOGS_BATCH_TIMEOUT', 5),
 
         // Queue name for batch processing

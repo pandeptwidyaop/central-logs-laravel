@@ -71,19 +71,22 @@ class CentralLogsHandler extends AbstractProcessingHandler
     {
         parent::__construct($level, $bubble);
 
-        $this->config = $config;
-        $this->async = ($config['mode'] ?? 'async') === 'async';
-        $this->batchEnabled = $config['batch']['enabled'] ?? true;
-        $this->fallbackConfig = $config['fallback'] ?? [];
-        $this->debug = $config['debug'] ?? false;
+        // Merge with Laravel config if not provided
+        $laravelConfig = config('central-logs', []);
+        $this->config = array_merge($laravelConfig, $config);
+
+        $this->async = ($this->config['mode'] ?? 'async') === 'async';
+        $this->batchEnabled = $this->config['batch']['enabled'] ?? false;
+        $this->fallbackConfig = $this->config['fallback'] ?? [];
+        $this->debug = $this->config['debug'] ?? false;
 
         // Initialize client
         $this->client = app(LogClientInterface::class);
 
         // Initialize transformer
         $this->transformer = new LogTransformer(
-            $config['context'] ?? [],
-            $config['source'] ?? 'laravel'
+            $this->config['context'] ?? [],
+            $this->config['source'] ?? 'laravel'
         );
 
         // Initialize batch aggregator if batch mode is enabled

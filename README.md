@@ -70,7 +70,20 @@ CENTRAL_LOGS_MODE=async
 CENTRAL_LOGS_BATCH_ENABLED=true
 ```
 
-### Step 4: Update Logging Configuration
+### Step 4: Add Middleware (Recommended for Batch Mode)
+
+Add the flush middleware to `app/Http/Kernel.php` to ensure logs are sent at the end of each request:
+
+```php
+protected $middleware = [
+    // ... other middleware
+    \CentralLogs\Http\Middleware\FlushCentralLogsMiddleware::class,
+];
+```
+
+**Why?** In batch mode, logs are collected and sent in batches. Without this middleware, logs may wait until batch size (default: 50) or timeout (default: 5s) is reached. The middleware ensures logs are flushed after each request.
+
+### Step 5: Update Logging Configuration
 
 Add the Central Logs channel to your `config/logging.php`:
 
@@ -92,7 +105,7 @@ Add the Central Logs channel to your `config/logging.php`:
 ],
 ```
 
-### Step 5: Test Connection
+### Step 6: Test Connection
 
 ```bash
 php artisan central-logs:test
@@ -369,10 +382,37 @@ Check:
 - Check queue for failed jobs: `php artisan queue:failed`
 - Check Laravel logs: `tail -f storage/logs/laravel.log`
 
-**In Batch Mode:**
-- Logs may be waiting for batch to fill or timeout
-- Check batch size and timeout settings
-- Manually flush: `php artisan tinker` then `app(BatchAggregator::class)->flush()`
+**In Batch Mode (Most Common Issue):**
+
+**Problem:** Logs not sent immediately, waiting until batch size or timeout reached
+
+**Solutions:**
+1. **Add Flush Middleware (Recommended):**
+   ```php
+   // app/Http/Kernel.php
+   protected $middleware = [
+       \CentralLogs\Http\Middleware\FlushCentralLogsMiddleware::class,
+   ];
+   ```
+
+2. **Lower Batch Settings for Development:**
+   ```bash
+   # .env
+   CENTRAL_LOGS_BATCH_SIZE=10    # Lower from default 50
+   CENTRAL_LOGS_BATCH_TIMEOUT=2  # Lower from default 5
+   ```
+
+3. **Disable Batching for Testing:**
+   ```bash
+   # .env
+   CENTRAL_LOGS_BATCH_ENABLED=false
+   ```
+
+4. **Manual Flush in Tinker:**
+   ```bash
+   php artisan tinker
+   app(\CentralLogs\Support\BatchAggregator::class)->flush();
+   ```
 
 ### Performance Issues
 
