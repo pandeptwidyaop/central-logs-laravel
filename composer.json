@@ -27,17 +27,17 @@
         "source": "https://github.com/pandeptwidyaop/central-logs-laravel"
     },
     "require": {
-        "php": "^8.0",
-        "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
-        "illuminate/contracts": "^9.0|^10.0|^11.0|^12.0",
-        "illuminate/queue": "^9.0|^10.0|^11.0|^12.0",
-        "illuminate/console": "^9.0|^10.0|^11.0|^12.0",
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "illuminate/contracts": "^10.0|^11.0|^12.0",
+        "illuminate/queue": "^10.0|^11.0|^12.0",
+        "illuminate/console": "^10.0|^11.0|^12.0",
         "monolog/monolog": "^3.0",
         "guzzlehttp/guzzle": "^7.8"
     },
     "require-dev": {
-        "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0",
-        "phpunit/phpunit": "^9.5|^10.0|^11.0",
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^10.0|^11.0",
         "mockery/mockery": "^1.6",
         "phpstan/phpstan": "^1.10",
         "laravel/pint": "^1.13"
