@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.2.3...v1.2.4) (2025-12-19)
+
+
+### Bug Fixes
+
+* null client implementation missing required interface methods ([1d9e570](https://github.com/pandeptwidyaop/central-logs-laravel/commit/1d9e57081a5b048bd672388c48c19db6ccaa9ee6))
+
 ## [1.2.3](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.2.2...v1.2.3) (2025-12-19)
 
 
