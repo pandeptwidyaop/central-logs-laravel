@@ -1,6 +1,8 @@
 # Central Logs Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/central-logs/laravel.svg?style=flat-square)](https://packagist.org/packages/central-logs/laravel)
+[![Tests](https://img.shields.io/github/actions/workflow/status/pandeptwidyaop/central-logs-laravel/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/pandeptwidyaop/central-logs-laravel/actions/workflows/tests.yml)
+[![PHPStan](https://img.shields.io/github/actions/workflow/status/pandeptwidyaop/central-logs-laravel/tests.yml?branch=main&label=phpstan&style=flat-square)](https://github.com/pandeptwidyaop/central-logs-laravel/actions/workflows/tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/central-logs/laravel.svg?style=flat-square)](https://packagist.org/packages/central-logs/laravel)
 [![License](https://img.shields.io/packagist/l/central-logs/laravel.svg?style=flat-square)](LICENSE)
 
