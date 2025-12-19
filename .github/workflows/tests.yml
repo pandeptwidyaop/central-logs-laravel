@@ -16,6 +16,9 @@ jobs:
         php: [8.2, 8.3]
         laravel: [11.*, 12.*]
         dependency-version: [prefer-lowest, prefer-stable]
+        exclude:
+          # Laravel 12 not yet supported by Orchestra Testbench
+          - laravel: 12.*
         
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
     
