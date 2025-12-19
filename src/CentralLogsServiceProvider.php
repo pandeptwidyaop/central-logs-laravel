@@ -39,8 +39,15 @@ class CentralLogsServiceProvider extends ServiceProvider
                 }
 
                 return new class implements LogClientInterface {
-                    public function send(array $log): void {}
-                    public function sendBatch(array $logs): void {}
+                    public function sendLog(array $logData): bool {
+                        return true;
+                    }
+                    public function sendBatch(array $logs): bool {
+                        return true;
+                    }
+                    public function testConnection(): bool {
+                        return false;
+                    }
                 };
             }
 
