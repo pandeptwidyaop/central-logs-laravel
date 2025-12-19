@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.2.2...v1.2.3) (2025-12-19)
+
+
+### Bug Fixes
+
+* batch configuration not respected & add auto-flush middleware ([16877f9](https://github.com/pandeptwidyaop/central-logs-laravel/commit/16877f9b807311da391428179816a1ff31ce4ed4))
+
 ## [1.2.2](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.2.1...v1.2.2) (2025-12-19)
 
 
