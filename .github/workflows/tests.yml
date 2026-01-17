@@ -86,8 +86,11 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath
           coverage: none
+          tools: composer:v2.7
 
       - name: Install dependencies
+        env:
+          COMPOSER_NO_AUDIT: 1
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" \
             "illuminate/support:${{ matrix.laravel }}" \
@@ -95,7 +98,7 @@ jobs:
             "illuminate/queue:${{ matrix.laravel }}" \
             "illuminate/console:${{ matrix.laravel }}" \
             --no-interaction --no-update
-          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --with-all-dependencies --no-audit
+          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --with-all-dependencies
 
       - name: Execute tests
         run: |
