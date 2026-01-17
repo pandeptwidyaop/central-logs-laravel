@@ -1,3 +1,21 @@
+## [1.3.0] - 2026-01-17
+
+### Added
+- Laravel 9 support with backward compatible implementation
+- Support for Monolog 2.x and 3.x in single codebase
+- PHP 8.0 support
+
+### Changed
+- Relaxed Laravel dependency to `^9.0|^10.0|^11.0|^12.0`
+- Relaxed PHP dependency to `^8.0`
+- Updated Monolog dependency to `^2.0|^3.0`
+- Refactored handler to use array access pattern for Monolog compatibility
+
+### Technical
+- Implemented ArrayAccess bridge pattern for Monolog 2/3 compatibility
+- Added runtime level detection for proper PSR level conversion
+- Updated CI/CD matrix to test all Laravel 9-12 combinations
+
 ## [1.2.3](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.2.2...v1.2.3) (2025-12-19)
 
 

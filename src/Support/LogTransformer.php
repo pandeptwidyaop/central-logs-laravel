@@ -44,55 +44,68 @@ class LogTransformer
     /**
      * Transform Monolog log record to Central Logs format.
      *
-     * @param  LogRecord  $record
+     * @param  array|LogRecord  $record
      * @return array
      */
-    public function transform(LogRecord $record): array
+    public function transform(array|LogRecord $record): array
     {
         return [
-            'level' => $this->mapLevel($record->level),
-            'message' => $record->message,
+            'level' => $this->mapLevel($record['level']),
+            'message' => $record['message'],
             'metadata' => $this->buildMetadata($record),
             'source' => $this->source,
-            'timestamp' => $record->datetime->format('Y-m-d\TH:i:s.u\Z'),
+            'timestamp' => $record['datetime']->format('Y-m-d\TH:i:s.u\Z'),
         ];
     }
 
     /**
      * Map Monolog level to Central Logs level.
      *
-     * @param  Level  $level
+     * @param  int|Level  $level
      * @return string
      */
-    protected function mapLevel(Level $level): string
+    protected function mapLevel(int|Level $level): string
     {
+        // Monolog 3: Level enum
+        if ($level instanceof Level) {
+            return match ($level) {
+                Level::Debug => 'DEBUG',
+                Level::Info, Level::Notice => 'INFO',
+                Level::Warning => 'WARN',
+                Level::Error => 'ERROR',
+                Level::Critical, Level::Alert, Level::Emergency => 'CRITICAL',
+            };
+        }
+
+        // Monolog 2: integer constants
         return match ($level) {
-            Level::Debug => 'DEBUG',
-            Level::Info, Level::Notice => 'INFO',
-            Level::Warning => 'WARN',
-            Level::Error => 'ERROR',
-            Level::Critical, Level::Alert, Level::Emergency => 'CRITICAL',
+            100 => 'DEBUG', // Logger::DEBUG
+            200, 250 => 'INFO', // Logger::INFO, Logger::NOTICE
+            300 => 'WARN', // Logger::WARNING
+            400 => 'ERROR', // Logger::ERROR
+            500, 550, 600 => 'CRITICAL', // Logger::CRITICAL, ALERT, EMERGENCY
+            default => 'INFO',
         };
     }
 
     /**
      * Build metadata from log record and enrichment config.
      *
-     * @param  LogRecord  $record
+     * @param  array|LogRecord  $record
      * @return array
      */
-    protected function buildMetadata(LogRecord $record): array
+    protected function buildMetadata(array|LogRecord $record): array
     {
         $metadata = [];
 
         // Include context from log call
-        if (! empty($record->context)) {
-            $metadata['context'] = $this->processContext($record->context);
+        if (! empty($record['context'])) {
+            $metadata['context'] = $this->processContext($record['context']);
         }
 
         // Include extra data
-        if (! empty($record->extra)) {
-            $metadata['extra'] = $record->extra;
+        if (! empty($record['extra'])) {
+            $metadata['extra'] = $record['extra'];
         }
 
         // Add Laravel-specific enrichment

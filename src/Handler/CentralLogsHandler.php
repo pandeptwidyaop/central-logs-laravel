@@ -64,12 +64,13 @@ class CentralLogsHandler extends AbstractProcessingHandler
      * Create a new Central Logs handler instance.
      *
      * @param  array  $config
-     * @param  Level  $level
+     * @param  int|Level|null  $level
      * @param  bool  $bubble
      */
-    public function __construct(array $config = [], Level $level = Level::Debug, bool $bubble = true)
+    public function __construct(array $config = [], int|Level $level = null, bool $bubble = true)
     {
-        parent::__construct($level, $bubble);
+        $normalizedLevel = $this->normalizeLevel($level);
+        parent::__construct($normalizedLevel, $bubble);
 
         // Merge with Laravel config if not provided
         $laravelConfig = config('central-logs', []);
@@ -98,10 +99,10 @@ class CentralLogsHandler extends AbstractProcessingHandler
     /**
      * Write the log record.
      *
-     * @param  LogRecord  $record
+     * @param  array|LogRecord  $record
      * @return void
      */
-    protected function write(LogRecord $record): void
+    protected function write(array|LogRecord $record): void
     {
         try {
             // Transform the log record
@@ -188,10 +189,10 @@ class CentralLogsHandler extends AbstractProcessingHandler
      * Handle logging errors.
      *
      * @param  \Throwable  $e
-     * @param  LogRecord  $record
+     * @param  array|LogRecord  $record
      * @return void
      */
-    protected function handleError(\Throwable $e, LogRecord $record): void
+    protected function handleError(\Throwable $e, array|LogRecord $record): void
     {
         // Use fallback channel if enabled
         if ($this->fallbackConfig['enabled'] ?? true) {
@@ -202,18 +203,18 @@ class CentralLogsHandler extends AbstractProcessingHandler
         error_log(sprintf(
             '[CentralLogs] Failed to process log: %s - Original message: %s',
             $e->getMessage(),
-            $record->message
+            $record['message']
         ));
     }
 
     /**
      * Log to fallback channel.
      *
-     * @param  LogRecord  $record
+     * @param  array|LogRecord  $record
      * @param  \Throwable  $e
      * @return void
      */
-    protected function logToFallback(LogRecord $record, \Throwable $e): void
+    protected function logToFallback(array|LogRecord $record, \Throwable $e): void
     {
         try {
             $fallbackChannel = $this->fallbackConfig['channel'] ?? 'stack';
@@ -224,9 +225,9 @@ class CentralLogsHandler extends AbstractProcessingHandler
             }
 
             Log::channel($fallbackChannel)->log(
-                $record->level->toPsrLogLevel(),
-                $record->message,
-                $record->context
+                $this->getLevelName($record['level']),
+                $record['message'],
+                $record['context']
             );
         } catch (\Throwable $fallbackException) {
             // Silently fail - we don't want to break the application
@@ -258,6 +259,49 @@ class CentralLogsHandler extends AbstractProcessingHandler
     public function getBatchAggregator(): ?BatchAggregator
     {
         return $this->batchAggregator;
+    }
+
+    /**
+     * Normalize level parameter for Monolog 2/3 compatibility.
+     *
+     * @param  int|Level|null  $level
+     * @return int|Level
+     */
+    protected function normalizeLevel(int|Level|null $level): int|Level
+    {
+        if ($level === null) {
+            // Monolog 3: Level::Debug, Monolog 2: Logger::DEBUG (100)
+            return class_exists(Level::class) ? Level::Debug : 100;
+        }
+
+        return $level;
+    }
+
+    /**
+     * Get PSR log level name from Monolog level.
+     *
+     * @param  int|Level  $level
+     * @return string
+     */
+    protected function getLevelName(int|Level $level): string
+    {
+        // Monolog 3: Level enum
+        if ($level instanceof Level) {
+            return $level->toPsrLogLevel();
+        }
+
+        // Monolog 2: integer constants
+        return match ($level) {
+            100 => 'debug',
+            200 => 'info',
+            250 => 'notice',
+            300 => 'warning',
+            400 => 'error',
+            500 => 'critical',
+            550 => 'alert',
+            600 => 'emergency',
+            default => 'info',
+        };
     }
 
     /**

@@ -22,10 +22,17 @@ A powerful and flexible Laravel package for sending logs to Central Logs system 
 - ✅ **Zero Data Loss** - Shutdown hooks ensure all logs are sent
 - ✅ **Production Ready** - 100% test coverage, error handling, graceful degradation
 
+## Version Compatibility
+
+| Package Version | Laravel | PHP | Monolog |
+|----------------|---------|-----|---------|
+| 1.3+ | 9.x, 10.x, 11.x, 12.x | ^8.0 | ^2.0\|^3.0 |
+| 1.0-1.2 | 10.x, 11.x, 12.x | ^8.1 | ^3.0 |
+
 ## Requirements
 
-- PHP 8.1 or higher (8.2+ for Laravel 11 & 12)
-- Laravel 10.x, 11.x, or 12.x
+- PHP 8.0 or higher
+- Laravel 9.x, 10.x, 11.x, or 12.x
 - Guzzle HTTP Client 7.8+
 - Central Logs instance (running at accessible URL)
 
