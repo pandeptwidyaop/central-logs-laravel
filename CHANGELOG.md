@@ -1,3 +1,20 @@
+# [1.3.0](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.2.4...v1.3.0) (2026-01-17)
+
+
+### Bug Fixes
+
+* add --with-all-dependencies to CI composer update ([92ffe36](https://github.com/pandeptwidyaop/central-logs-laravel/commit/92ffe361af3a5223911b6b22bc3bcd76bcde6c8d))
+* constrain all illuminate packages in CI/CD matrix ([5714f12](https://github.com/pandeptwidyaop/central-logs-laravel/commit/5714f12df990c4dc691f548c6ff6d7b26331e166))
+* disable Composer audit with environment variable ([dc12a75](https://github.com/pandeptwidyaop/central-logs-laravel/commit/dc12a75093eed8c7f21299ac1117248d624fca7c))
+* disable security audit in CI for compatibility testing ([3331d91](https://github.com/pandeptwidyaop/central-logs-laravel/commit/3331d91ff68cf35c385b4a0ba61056c383547015))
+* remove laravel/pint before dependency resolution in CI ([e71f6a4](https://github.com/pandeptwidyaop/central-logs-laravel/commit/e71f6a4ec819ef2f8a75793e4f31b4adfaebc348))
+* skip dev dependencies in CI to support PHP 8.0 ([c04e574](https://github.com/pandeptwidyaop/central-logs-laravel/commit/c04e574bdda7f68085181061fe526d4527e3dc4a))
+
+
+### Features
+
+* add Laravel 9 support with backward compatible implementation ([36b5d63](https://github.com/pandeptwidyaop/central-logs-laravel/commit/36b5d635d36cded353b77eed3af21def12635834))
+
 ## [1.3.0] - 2026-01-17
 
 ### Added
