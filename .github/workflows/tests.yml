@@ -92,6 +92,8 @@ jobs:
         env:
           COMPOSER_NO_AUDIT: 1
         run: |
+          # Remove dev dependencies that require PHP 8.1+
+          composer remove "laravel/pint" --dev --no-update --no-interaction || true
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" \
             "illuminate/support:${{ matrix.laravel }}" \
             "illuminate/contracts:${{ matrix.laravel }}" \
