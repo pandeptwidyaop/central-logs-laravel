@@ -4,7 +4,7 @@ namespace CentralLogs\Support;
 
 use CentralLogs\Client\Contracts\LogClientInterface;
 use CentralLogs\Exceptions\ApiException;
-use Illuminate\Support\Carbon;
+use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
@@ -21,7 +21,7 @@ class BatchAggregator
     /**
      * Timestamp of when the first log was added to current batch.
      */
-    protected ?Carbon $firstLogTime = null;
+    protected ?CarbonInterface $firstLogTime = null;
 
     /**
      * The log client instance.

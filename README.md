@@ -26,13 +26,14 @@ A powerful and flexible Laravel package for sending logs to Central Logs system 
 
 | Package Version | Laravel | PHP | Monolog |
 |----------------|---------|-----|---------|
-| 1.3+ | 9.x, 10.x, 11.x, 12.x | ^8.0 | ^2.0\|^3.0 |
+| 1.4+ | 9.x, 10.x, 11.x, 12.x, 13.x | ^8.0 (Laravel 13: ^8.3) | ^2.0\|^3.0 |
+| 1.3 | 9.x, 10.x, 11.x, 12.x | ^8.0 | ^2.0\|^3.0 |
 | 1.0-1.2 | 10.x, 11.x, 12.x | ^8.1 | ^3.0 |
 
 ## Requirements
 
 - PHP 8.0 or higher
-- Laravel 9.x, 10.x, 11.x, or 12.x
+- Laravel 9.x, 10.x, 11.x, 12.x, or 13.x
 - Guzzle HTTP Client 7.8+
 - Central Logs instance (running at accessible URL)
 

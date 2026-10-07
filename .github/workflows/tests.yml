@@ -74,6 +74,24 @@ jobs:
             php: '8.2'
             dependency-version: prefer-lowest
 
+          # Laravel 13 (PHP 8.3+)
+          - laravel: 13.*
+            testbench: ^11.0
+            php: '8.3'
+            dependency-version: prefer-stable
+          - laravel: 13.*
+            testbench: ^11.0
+            php: '8.4'
+            dependency-version: prefer-stable
+          - laravel: 13.*
+            testbench: ^11.0
+            php: '8.5'
+            dependency-version: prefer-stable
+          - laravel: 13.*
+            testbench: ^11.0
+            php: '8.3'
+            dependency-version: prefer-lowest
+
     name: L${{ matrix.laravel }} - P${{ matrix.php }} - ${{ matrix.dependency-version }}
     
     steps:
@@ -92,23 +110,19 @@ jobs:
         env:
           COMPOSER_NO_AUDIT: 1
         run: |
-          # Remove dev dependencies that require PHP 8.1+
-          composer remove "laravel/pint" --dev --no-update --no-interaction || true
+          # Tooling that is not needed to run the tests (and not installable on every PHP in the matrix)
+          composer remove "laravel/pint" "phpstan/phpstan" --dev --no-update --no-interaction || true
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" \
             "illuminate/support:${{ matrix.laravel }}" \
             "illuminate/contracts:${{ matrix.laravel }}" \
             "illuminate/queue:${{ matrix.laravel }}" \
             "illuminate/console:${{ matrix.laravel }}" \
             --no-interaction --no-update
-          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --with-all-dependencies --no-dev
+          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --with-all-dependencies
 
       - name: Execute tests
         run: |
-          if [ -n "$(find tests -name '*Test.php' -type f)" ]; then
-            vendor/bin/phpunit
-          else
-            echo "No tests found, skipping..."
-          fi
+          vendor/bin/phpunit --no-coverage
 
   phpstan:
     runs-on: ubuntu-latest
