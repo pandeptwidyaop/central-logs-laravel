@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.3.0...v1.4.0) (2026-10-07)
+
+
+### Bug Fixes
+
+* type the batch start time as CarbonInterface ([841c3b0](https://github.com/pandeptwidyaop/central-logs-laravel/commit/841c3b0b1bf6689029a8858941683571eb87ab87))
+
+
+### Features
+
+* support Laravel 13 ([c3a0ba8](https://github.com/pandeptwidyaop/central-logs-laravel/commit/c3a0ba83ba7676c6b6d27a1726f5abd596b78bbd))
+
 # [1.3.0](https://github.com/pandeptwidyaop/central-logs-laravel/compare/v1.2.4...v1.3.0) (2026-01-17)
 
 
